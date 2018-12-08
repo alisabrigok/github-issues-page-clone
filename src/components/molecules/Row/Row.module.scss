@@ -1,0 +1,42 @@
+.row {
+  display: flex;
+  min-height: 5.5rem;
+  border-top: 1px solid #e1e4e8;
+
+  &:first-of-type {
+    border-top-color: transparent;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  &:hover {
+    background-color: #f6f8fa;
+  }
+}
+
+.notice {
+  padding-left: 1.5rem;
+  padding-top: .8rem;
+}
+
+.comment {
+  padding-right: 1.5rem;
+  padding-top: .8rem;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+
+  .commentIcon {
+    height: 1.6rem;
+    width: 1.6rem;
+    margin-right: .4rem;
+  }
+
+  .commentNumber {
+    &:hover {
+      color: #0366d6;
+      cursor: pointer;
+    }
+  }
+}
