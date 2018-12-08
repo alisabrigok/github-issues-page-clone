@@ -6,27 +6,34 @@ import Select from 'react-select';
 import { customStyles } from './EmotionStyles';
 
 type State = {
-  inputValue: string;
+  inputValue: string
 };
 
 type Props = {
-  filterTitle: string;
-  selectOptions: Array<Object>;
-  searchPlaceholder: string;
-  onSelectChange: (x: string) => void;
-  selectionValue: any;
-  noOptionsLabel: string;
+  filterTitle: string,
+  selectOptions: Array<Object>,
+  searchPlaceholder: string,
+  onSelectChange: (x: string) => void,
+  selectionValue: any,
+  noOptionsLabel: string
 };
 
 class SelectBox extends Component<Props, State> {
-  state = { inputValue: '' }
+  state = { inputValue: '' };
 
   onInputChange = (inputValue: string) => {
     this.setState({ inputValue });
-  }
+  };
 
   render() {
-    const { filterTitle, selectOptions, searchPlaceholder, onSelectChange, selectionValue, noOptionsLabel} = this.props;
+    const {
+      filterTitle,
+      selectOptions,
+      searchPlaceholder,
+      onSelectChange,
+      selectionValue,
+      noOptionsLabel
+    } = this.props;
     const { inputValue } = this.state;
 
     const noOptionsMessage = () => `${noOptionsLabel}: ${inputValue}`;

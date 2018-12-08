@@ -12,7 +12,11 @@ class StatusTabContainer extends Component<Props> {
   render() {
     return (
       <div className={styles.container}>
-        <ContentWithIcon parentClass={styles.open} icon={exclamationBlack} alt="exclamation icon black">
+        <ContentWithIcon
+          parentClass={styles.open}
+          icon={exclamationBlack}
+          alt="exclamation icon black"
+        >
           296 Open
         </ContentWithIcon>
         <ContentWithIcon parentClass={styles.close} icon={tick} alt="tick icon">

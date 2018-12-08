@@ -10,7 +10,7 @@ class FilterContainer extends Component<Props> {
   render() {
     return (
       <div className={styles.container}>
-        <AuthorSelect/>
+        <AuthorSelect />
         {/* <div className={styles.item}>Labels</div>
         <div className={styles.item}>Projects</div>
         <div className={styles.item}>Milestones</div>

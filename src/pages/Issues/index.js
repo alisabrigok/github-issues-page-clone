@@ -1,13 +1,21 @@
 // @flow
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchIssues } from './actions';
 import styles from './Issues.module.scss';
 import Header from '../../components/organisms/Header';
 import Main from '../../components/organisms/Main';
 
-type Props = {};
+type Props = {
+  fetchIssues: () => void
+};
 
 class IssuesPage extends Component<Props> {
+  componentDidMount() {
+    this.props.fetchIssues();
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -18,4 +26,13 @@ class IssuesPage extends Component<Props> {
   }
 }
 
-export default IssuesPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchIssues: () => dispatch(fetchIssues())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(IssuesPage);
