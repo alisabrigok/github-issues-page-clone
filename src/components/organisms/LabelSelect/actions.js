@@ -4,12 +4,12 @@ export const setLabels = labels => {
   return {
     type: SET_LABELS,
     labels
-  }
-}
+  };
+};
 
 export const filterByLabel = selectedLabel => {
   return {
     type: FILTER_BY_LABEL,
     selectedLabel
-  }
-}
+  };
+};

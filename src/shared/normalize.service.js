@@ -1,7 +1,8 @@
 import { uniqBy } from 'lodash';
 import { flatten } from './utility';
 
-export const getIssues = response => response.data.map(issue => ({
+export const getIssues = response =>
+  response.data.map(issue => ({
     assignee: issue.assignee,
     assignees: issue.assignees,
     comments: issue.comments,
@@ -12,8 +13,7 @@ export const getIssues = response => response.data.map(issue => ({
     title: issue.title,
     url: issue.html_url,
     user: getUser(issue)
-  })
-);
+  }));
 
 export const getUser = issue => ({
   value: issue.user.id,
@@ -21,16 +21,16 @@ export const getUser = issue => ({
   avatarUrl: issue.user.avatar_url
 });
 
-export const getUsers = issues => uniqBy(issues.map(issue => issue.user), 'value');
+export const getUsers = issues =>
+  uniqBy(issues.map(issue => issue.user), 'value');
 
 export const getLabels = issues => {
   const nestedLabels = issues.map(issue => issue.labels);
   const uniqueFlattenLabels = uniqBy(flatten(nestedLabels), 'id');
 
   return uniqueFlattenLabels.map(label => ({
-      value: label.id,
-      label: label.name,
-      color: label.color
-    })
-  );
+    value: label.id,
+    label: label.name,
+    color: label.color
+  }));
 };

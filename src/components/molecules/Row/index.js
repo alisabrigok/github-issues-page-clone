@@ -23,21 +23,24 @@ class Row extends Component<Props> {
           icon={exclamationGreen}
           alt="exclamation icon green"
         />
-        <IssueDescription
-          {...this.props}
-        />
-        {!!comments &&
-        <ContentWithIcon
-          parentClass={styles.comment}
-          childClass={styles.commentIcon}
-          icon={commentIcon}
-          alt="comment icon"
-        >
-          <a className={styles.commentNumber} href={url} target="_blank" rel="noopener noreferrer">
-            {comments}
-          </a>
-        </ContentWithIcon>
-        }
+        <IssueDescription {...this.props} />
+        {!!comments && (
+          <ContentWithIcon
+            parentClass={styles.comment}
+            childClass={styles.commentIcon}
+            icon={commentIcon}
+            alt="comment icon"
+          >
+            <a
+              className={styles.commentNumber}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {comments}
+            </a>
+          </ContentWithIcon>
+        )}
       </section>
     );
   }

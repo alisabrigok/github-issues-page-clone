@@ -46,7 +46,11 @@ class SelectBox extends Component<Props, State> {
         <Select
           autoFocus
           backspaceRemovesValue={false}
-          components={{ Option: SelectOption, DropdownIndicator, IndicatorSeparator: null }}
+          components={{
+            Option: SelectOption,
+            DropdownIndicator,
+            IndicatorSeparator: null
+          }}
           controlShouldRenderValue={false}
           hideSelectedOptions={false}
           isClearable

@@ -10,7 +10,7 @@ import { filterByLabel } from './actions';
 
 type State = {
   isSelectBoxOpen: boolean,
-  selectedLabel: Object
+  selectedLabel: ?Object
 };
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 };
 
 class LabelSelect extends Component<Props, State> {
-  state = { isSelectBoxOpen: false, selectedLabel: {} };
+  state = { isSelectBoxOpen: false, selectedLabel: null };
 
   toggleSelectBox = () => {
     this.setState(state => ({ isSelectBoxOpen: !state.isSelectBoxOpen }));
@@ -39,7 +39,10 @@ class LabelSelect extends Component<Props, State> {
     return (
       <div className={styles.menuContainer}>
         {isSelectBoxOpen && <Blanket toggleSelectBox={this.toggleSelectBox} />}
-        <SelectLabel toggleSelectBox={this.toggleSelectBox}> Labels </SelectLabel>
+        <SelectLabel toggleSelectBox={this.toggleSelectBox}>
+          {' '}
+          Labels{' '}
+        </SelectLabel>
         {isSelectBoxOpen && (
           <SelectBox
             selectOptions={labels}
@@ -65,4 +68,7 @@ const mapStateToProps = ({ labelsReducer }) => ({
   labels: labelsReducer.labels
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LabelSelect);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LabelSelect);

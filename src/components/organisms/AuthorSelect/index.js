@@ -39,7 +39,10 @@ class AuthorSelect extends Component<Props, State> {
     return (
       <div className={styles.menuContainer}>
         {isSelectBoxOpen && <Blanket toggleSelectBox={this.toggleSelectBox} />}
-        <SelectLabel toggleSelectBox={this.toggleSelectBox}> Author </SelectLabel>
+        <SelectLabel toggleSelectBox={this.toggleSelectBox}>
+          {' '}
+          Author{' '}
+        </SelectLabel>
         {isSelectBoxOpen && (
           <SelectBox
             selectOptions={authors}
@@ -65,4 +68,7 @@ const mapStateToProps = ({ authorsReducer }) => ({
   authors: authorsReducer.authors
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthorSelect);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthorSelect);

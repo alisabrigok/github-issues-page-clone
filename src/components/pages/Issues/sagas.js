@@ -2,9 +2,12 @@ import { put } from 'redux-saga/effects';
 import axios from '../../../axios';
 import { fetchIssuesSuccess, fetchIssuesFail } from './actions';
 import { setAuthors } from '../../organisms/AuthorSelect/actions';
-import { getIssues, getUsers, getLabels } from '../../../shared/normalize.service.js';
+import {
+  getIssues,
+  getUsers,
+  getLabels
+} from '../../../shared/normalize.service.js';
 import { setLabels } from '../../organisms/LabelSelect/actions';
-
 
 export function* fetchIssuesSaga() {
   try {

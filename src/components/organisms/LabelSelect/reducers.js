@@ -1,6 +1,4 @@
-import {
-  SET_LABELS
-} from './constants';
+import { SET_LABELS } from './constants';
 
 const initialState = {
   labels: null

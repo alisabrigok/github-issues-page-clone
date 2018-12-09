@@ -13,30 +13,27 @@ class Main extends Component<Props> {
   generateRows() {
     const { issues } = this.props;
     return issues.map(issue => (
-      <Row 
-        key={issue.issueId} 
-        number={issue.number} 
-        createdAt={issue.createdAt} 
-        from={issue.user.label} 
-        title={issue.title} 
-        comments={issue.comments} 
-        labels={issue.labels} 
+      <Row
+        key={issue.issueId}
+        number={issue.number}
+        createdAt={issue.createdAt}
+        from={issue.user.label}
+        userId={issue.user.value}
+        title={issue.title}
+        comments={issue.comments}
+        labels={issue.labels}
         url={issue.url}
       />
-    ))
+    ));
   }
 
   render() {
-    return (
-      <main className={styles.main}>
-        {this.generateRows()}
-      </main>
-    );
+    return <main className={styles.main}>{this.generateRows()}</main>;
   }
 }
 
 const mapStateToProps = ({ issuesReducer }) => ({
   issues: issuesReducer.filteredIssues
-})
+});
 
 export default connect(mapStateToProps)(Main);

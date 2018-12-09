@@ -7,9 +7,14 @@ const { Option } = components;
 const SelectOption = props => {
   const { data } = props;
 
-  const indicator = data.avatarUrl ? 
-    (<img className={styles.author} src={data.avatarUrl} alt="author"/>) :
-    (<span className={styles.author} style={{backgroundColor: `#${data.color}`}} ></span>);
+  const indicator = data.avatarUrl ? (
+    <img className={styles.author} src={data.avatarUrl} alt="author" />
+  ) : (
+    <span
+      className={styles.author}
+      style={{ backgroundColor: `#${data.color}` }}
+    />
+  );
 
   return (
     <Option {...props}>
@@ -18,7 +23,7 @@ const SelectOption = props => {
         {data.label}
       </div>
     </Option>
-  )
+  );
 };
 
 export default SelectOption;

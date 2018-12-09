@@ -23,11 +23,15 @@ const filterIssuesByAuthor = (state, selectedAuthor) => {
     let newFilteredIssues;
 
     if (state.labelFilterStatus) {
-      newFilteredIssues = filteredIssues.filter(issue => issue.user.value === selectedAuthor.value);
+      newFilteredIssues = filteredIssues.filter(
+        issue => issue.user.value === selectedAuthor.value
+      );
     } else {
-      newFilteredIssues = issues.filter(issue => issue.user.value === selectedAuthor.value);
+      newFilteredIssues = issues.filter(
+        issue => issue.user.value === selectedAuthor.value
+      );
     }
-    
+
     return {
       ...state,
       filteredIssues: newFilteredIssues,
@@ -36,16 +40,19 @@ const filterIssuesByAuthor = (state, selectedAuthor) => {
     };
   } else {
     if (state.labelFilterStatus) {
-      return filterIssuesByLabel({...state, authorFilterStatus: false}, state.selectedLabel);
+      return filterIssuesByLabel(
+        { ...state, authorFilterStatus: false },
+        state.selectedLabel
+      );
     } else {
-      return { 
-        ...state, 
+      return {
+        ...state,
         filteredIssues: [...state.issues],
         authorFilterStatus: false
       };
     }
   }
-}
+};
 
 const filterIssuesByLabel = (state, selectedLabel) => {
   if (selectedLabel) {
@@ -53,15 +60,15 @@ const filterIssuesByLabel = (state, selectedLabel) => {
     let newFilteredIssues;
 
     if (state.authorFilterStatus) {
-      newFilteredIssues = filteredIssues
-      .filter(issue => issue.labels
-        .some(label => label.id === selectedLabel.value));
+      newFilteredIssues = filteredIssues.filter(issue =>
+        issue.labels.some(label => label.id === selectedLabel.value)
+      );
     } else {
-      newFilteredIssues = issues
-      .filter(issue => issue.labels
-        .some(label => label.id === selectedLabel.value));
+      newFilteredIssues = issues.filter(issue =>
+        issue.labels.some(label => label.id === selectedLabel.value)
+      );
     }
-    
+
     return {
       ...state,
       filteredIssues: newFilteredIssues,
@@ -70,16 +77,19 @@ const filterIssuesByLabel = (state, selectedLabel) => {
     };
   } else {
     if (state.authorFilterStatus) {
-      return filterIssuesByAuthor({...state, labelFilterStatus: false}, state.selectedAuthor);
+      return filterIssuesByAuthor(
+        { ...state, labelFilterStatus: false },
+        state.selectedAuthor
+      );
     } else {
-      return { 
-        ...state, 
+      return {
+        ...state,
         filteredIssues: [...state.issues],
         labelFilterStatus: false
       };
     }
   }
-}
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

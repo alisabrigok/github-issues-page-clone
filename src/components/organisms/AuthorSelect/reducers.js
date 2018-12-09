@@ -1,6 +1,4 @@
-import {
-  SET_AUTHORS
-} from './constants';
+import { SET_AUTHORS } from './constants';
 
 const initialState = {
   authors: null
