@@ -1,1 +1,1 @@
-export const flatten = a => Array.isArray(a) ? [].concat(...a.map(flatten)) : a;
+export const flatten = element => Array.isArray(element) ? [].concat(...element.map(flatten)) : element;

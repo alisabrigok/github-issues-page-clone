@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styles from './App.module.scss';
-import IssuesPage from './pages/Issues';
+import IssuesPage from './components/pages/Issues';
 
 type Props = {};
 

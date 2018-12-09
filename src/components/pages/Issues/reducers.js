@@ -4,7 +4,8 @@ import {
   FETCH_ISSUES_FAIL
 } from './constants';
 
-import { FILTER_BY_AUTHOR } from '../../components/organisms/AuthorSelect/constants';
+import { FILTER_BY_AUTHOR } from '../../organisms/AuthorSelect/constants';
+import { FILTER_BY_LABEL } from '../../organisms/LabelSelect/constants';
 
 const initialState = {
   issues: [],
@@ -12,6 +13,8 @@ const initialState = {
   error: null,
   authorFilterStatus: false,
   labelFilterStatus: false,
+  selectedAuthor: null,
+  selectedLabel: null
 };
 
 const filterIssuesByAuthor = (state, selectedAuthor) => {
@@ -28,19 +31,51 @@ const filterIssuesByAuthor = (state, selectedAuthor) => {
     return {
       ...state,
       filteredIssues: newFilteredIssues,
-      authorFilterStatus: true
+      authorFilterStatus: true,
+      selectedAuthor
     };
   } else {
     if (state.labelFilterStatus) {
-      return { 
-        ...state,
-        authorFilterStatus: false
-      };
+      return filterIssuesByLabel({...state, authorFilterStatus: false}, state.selectedLabel);
     } else {
       return { 
         ...state, 
         filteredIssues: [...state.issues],
         authorFilterStatus: false
+      };
+    }
+  }
+}
+
+const filterIssuesByLabel = (state, selectedLabel) => {
+  if (selectedLabel) {
+    const { issues, filteredIssues } = state;
+    let newFilteredIssues;
+
+    if (state.authorFilterStatus) {
+      newFilteredIssues = filteredIssues
+      .filter(issue => issue.labels
+        .some(label => label.id === selectedLabel.value));
+    } else {
+      newFilteredIssues = issues
+      .filter(issue => issue.labels
+        .some(label => label.id === selectedLabel.value));
+    }
+    
+    return {
+      ...state,
+      filteredIssues: newFilteredIssues,
+      labelFilterStatus: true,
+      selectedLabel
+    };
+  } else {
+    if (state.authorFilterStatus) {
+      return filterIssuesByAuthor({...state, labelFilterStatus: false}, state.selectedAuthor);
+    } else {
+      return { 
+        ...state, 
+        filteredIssues: [...state.issues],
+        labelFilterStatus: false
       };
     }
   }
@@ -56,6 +91,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, error: action.error };
     case FILTER_BY_AUTHOR:
       return filterIssuesByAuthor(state, action.selectedAuthor);
+    case FILTER_BY_LABEL:
+      return filterIssuesByLabel(state, action.selectedLabel);
     default:
       return { ...state };
   }

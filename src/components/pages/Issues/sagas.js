@@ -1,9 +1,9 @@
 import { put } from 'redux-saga/effects';
-import axios from '../../axios';
+import axios from '../../../axios';
 import { fetchIssuesSuccess, fetchIssuesFail } from './actions';
-import { setAuthors } from '../../components/organisms/AuthorSelect/actions';
-import { getIssues, getUsers, getLabels } from '../../shared/normalize.service.js';
-import { setLabels } from '../../components/organisms/LabelSelect/actions';
+import { setAuthors } from '../../organisms/AuthorSelect/actions';
+import { getIssues, getUsers, getLabels } from '../../../shared/normalize.service.js';
+import { setLabels } from '../../organisms/LabelSelect/actions';
 
 
 export function* fetchIssuesSaga() {
