@@ -1,0 +1,2 @@
+export const SET_AUTHORS = 'SET_AUTHORS';
+export const FILTER_BY_AUTHOR = 'FILTER_BY_AUTHOR';

@@ -4,11 +4,11 @@ import React from 'react';
 import styles from './Blanket.module.scss';
 
 type Props = {
-  toggleOpen: () => void
+  toggleSelectBox: () => void
 };
 
-const Blanket = ({ toggleOpen }: Props) => (
-  <div className={styles.blanket} onClick={toggleOpen} />
+const Blanket = ({ toggleSelectBox }: Props) => (
+  <div className={styles.blanket} onClick={toggleSelectBox} />
 );
 
 export default Blanket;

@@ -1,23 +1,42 @@
-// @flow
+// flow
 
 import React, { Component } from 'react';
 import styles from './IssueDescription.module.scss';
+import moment from 'moment';
 
 type Props = {
   title: string,
-  issueNumber: string,
-  date: string,
-  from: string
+  number: string,
+  createdAt: string,
+  from: string,
+  url: string,
+  labels: Array<Object>
 };
 
 class IssueDescription extends Component<Props> {
+  generateLabel() {
+    const { labels } = this.props;
+    return labels.map(label => (
+      <span key={label.id} className={styles.label} style={{backgroundColor: `#${label.color}`}}>{label.name}</span>
+    ))
+  }
+
+  getDateDiffFromNow() {
+    return moment(this.props.createdAt).fromNow();
+  }
+
   render() {
+    const { url, title, number, from } = this.props;
+
     return (
       <div className={styles.container}>
-        <div className={styles.title}>{this.props.title}</div>
+        <div className={styles.titleGroup}>
+           <a className={styles.title} href={url} target="_blank" rel="noopener noreferrer">{title}</a>
+          {this.generateLabel()}
+        </div>
         <div className={styles.info}>
-          {this.props.issueNumber} opened {this.props.date} ago by
-          <span className={styles.from}> {this.props.from}</span>
+          #{number} opened {this.getDateDiffFromNow()} by
+          <span className={styles.from}> {from}</span>
         </div>
       </div>
     );

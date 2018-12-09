@@ -4,12 +4,12 @@ import * as React from 'react';
 import styles from './SelectLabel.module.scss';
 
 type Props = {
-  toggleOpen: () => void,
+  toggleSelectBox: () => void,
   children: React.Node
 };
 
-const SelectLabel = ({ toggleOpen, children }: Props) => (
-  <div className={styles.label} onClick={toggleOpen}>
+const SelectLabel = ({ toggleSelectBox, children }: Props) => (
+  <div className={styles.label} onClick={toggleSelectBox}>
     {children}
   </div>
 );

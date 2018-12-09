@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import styles from './SelectBox.module.scss';
 import Select from 'react-select';
 import { customStyles } from './EmotionStyles';
+import SelectOption from '../../atoms/SelectOption';
 
 type State = {
   inputValue: string
@@ -13,8 +14,8 @@ type Props = {
   filterTitle: string,
   selectOptions: Array<Object>,
   searchPlaceholder: string,
-  onSelectChange: (x: string) => void,
-  selectionValue: any,
+  onSelectChange: (x: Object) => void,
+  selectedOption: ?Object,
   noOptionsLabel: string
 };
 
@@ -31,12 +32,13 @@ class SelectBox extends Component<Props, State> {
       selectOptions,
       searchPlaceholder,
       onSelectChange,
-      selectionValue,
+      selectedOption,
       noOptionsLabel
     } = this.props;
     const { inputValue } = this.state;
 
-    const noOptionsMessage = () => `${noOptionsLabel}: ${inputValue}`;
+    const noOptionsMessage = () => `${noOptionsLabel}: ${inputValue} not found`;
+    const DropdownIndicator = () => '';
 
     return (
       <div className={styles.selectBox}>
@@ -44,10 +46,10 @@ class SelectBox extends Component<Props, State> {
         <Select
           autoFocus
           backspaceRemovesValue={false}
-          components={{ DropdownIndicator, IndicatorSeparator: null }}
+          components={{ Option: SelectOption, DropdownIndicator, IndicatorSeparator: null }}
           controlShouldRenderValue={false}
           hideSelectedOptions={false}
-          isClearable={false}
+          isClearable
           menuIsOpen
           onChange={onSelectChange}
           onInputChange={this.onInputChange}
@@ -55,14 +57,12 @@ class SelectBox extends Component<Props, State> {
           placeholder={searchPlaceholder}
           styles={customStyles}
           tabSelectsValue={false}
-          value={selectionValue}
+          value={selectedOption}
           noOptionsMessage={noOptionsMessage}
         />
       </div>
     );
   }
 }
-
-const DropdownIndicator = () => '';
 
 export default SelectBox;

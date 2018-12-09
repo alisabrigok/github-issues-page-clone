@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import styles from './FilterContainer.module.scss';
 import AuthorSelect from '../AuthorSelect';
+import LabelSelect from '../LabelSelect/index';
 
 type Props = {};
 
@@ -11,11 +12,7 @@ class FilterContainer extends Component<Props> {
     return (
       <div className={styles.container}>
         <AuthorSelect />
-        {/* <div className={styles.item}>Labels</div>
-        <div className={styles.item}>Projects</div>
-        <div className={styles.item}>Milestones</div>
-        <div className={styles.item}>Assignee</div>
-        <div className={styles.item}>Sort</div> */}
+        <LabelSelect />
       </div>
     );
   }

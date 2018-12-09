@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchIssues } from './actions';
 import styles from './Issues.module.scss';
-import Header from '../../components/organisms/Header';
-import Main from '../../components/organisms/Main';
+import Header from '../../components/templates/Header';
+import Main from '../../components/templates/Main';
 
 type Props = {
   fetchIssues: () => void

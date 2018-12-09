@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styles from './Header.module.scss';
 import StatusTabContainer from '../../molecules/StatusTabContainer';
-import FilterContainer from '../../molecules/FilterContainer';
+import FilterContainer from '../../organisms/FilterContainer';
 
 type Props = {};
 

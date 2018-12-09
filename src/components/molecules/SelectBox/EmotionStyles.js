@@ -42,9 +42,10 @@ export const customStyles = {
     borderRadius: '.3rem',
     display: 'flex',
     alignItems: 'center',
-    maxWidth: '100%',
+    maxWidth: '30rem',
     padding: '.5rem',
     width: '100%',
+    overflow: 'hidden',
     backgroundColor: '#fff',
     height: '3.4rem',
     boxShadow: 'inset 0 1px 2px rgba(27,31,35,.075), 0 0 0 0.2em rgba(3,102,214,.3)',
@@ -54,6 +55,8 @@ export const customStyles = {
   }),
   placeholder: provided => ({
     ...provided,
-    padding: '.5rem'
+    padding: '.5rem',
+    maxWidth: '30rem',
+    overflow: 'hidden'
   })
 }

@@ -34,6 +34,9 @@
   }
 
   .commentNumber {
+    text-decoration: none;
+    color: #586069;
+
     &:hover {
       color: #0366d6;
       cursor: pointer;

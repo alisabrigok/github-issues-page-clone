@@ -8,15 +8,14 @@ import IssueDescription from '../IssueDescription';
 import ContentWithIcon from '../../atoms/ContentWithIcon/index';
 
 type Props = {
-  issueNumber: string,
-  date: string,
-  from: string,
-  issueTitle: string,
-  commentNumber: string
+  comments: string,
+  url: string
 };
 
 class Row extends Component<Props> {
   render() {
+    const { comments, url } = this.props;
+
     return (
       <section className={styles.row}>
         <ContentWithIcon
@@ -25,21 +24,20 @@ class Row extends Component<Props> {
           alt="exclamation icon green"
         />
         <IssueDescription
-          issueNumber={this.props.issueNumber}
-          date={this.props.date}
-          from={this.props.from}
-          title={this.props.issueTitle}
+          {...this.props}
         />
+        {!!comments &&
         <ContentWithIcon
           parentClass={styles.comment}
           childClass={styles.commentIcon}
           icon={commentIcon}
           alt="comment icon"
         >
-          <span className={styles.commentNumber}>
-            {this.props.commentNumber}
-          </span>
+          <a className={styles.commentNumber} href={url} target="_blank" rel="noopener noreferrer">
+            {comments}
+          </a>
         </ContentWithIcon>
+        }
       </section>
     );
   }
