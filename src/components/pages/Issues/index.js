@@ -6,9 +6,12 @@ import { fetchIssues } from './actions';
 import styles from './Issues.module.scss';
 import Header from '../../templates/Header';
 import Main from '../../templates/Main';
+import FilterResetSection from '../../molecules/FilterResetSection/index';
 
 type Props = {
-  fetchIssues: () => void
+  fetchIssues: () => void,
+  authorFilterStatus: boolean,
+  labelFilterStatus: boolean
 };
 
 class IssuesPage extends Component<Props> {
@@ -17,8 +20,13 @@ class IssuesPage extends Component<Props> {
   }
 
   render() {
+    const { authorFilterStatus, labelFilterStatus } = this.props;
+
     return (
       <div className={styles.container}>
+        {(authorFilterStatus || labelFilterStatus) && (
+        <FilterResetSection />
+        )}
         <Header />
         <Main />
       </div>
@@ -26,13 +34,16 @@ class IssuesPage extends Component<Props> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     fetchIssues: () => dispatch(fetchIssues())
-  };
-};
+});
+
+const mapStateToProps = ({ issuesReducer }) => ({
+  authorFilterStatus: issuesReducer.authorFilterStatus,
+  labelFilterStatus: issuesReducer.labelFilterStatus
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(IssuesPage);

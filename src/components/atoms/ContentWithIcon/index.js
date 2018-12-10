@@ -5,21 +5,32 @@ import styles from './ContentWithIcon.module.scss';
 
 type Props = {
   parentClass: string,
-  childClass?: string,
+  imgClass?: string,
+  linkClass?: string,
   icon: React.Node,
   alt: string,
+  link?: string,
   children?: React.Node
 };
 
 const ContentWithIcon = ({
   parentClass,
-  childClass,
+  imgClass,
+  linkClass,
   icon,
   alt,
-  children
+  children,
+  link
 }: Props) => (
   <div className={parentClass}>
-    <img className={childClass || styles.noticeIcon} src={icon} alt={alt} />
+    <a 
+      href={link} 
+      className={linkClass}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img className={imgClass || styles.noticeIcon} src={icon} alt={alt} />
+    </a>
     {children}
   </div>
 );

@@ -27,9 +27,11 @@ class Row extends Component<Props> {
         {!!comments && (
           <ContentWithIcon
             parentClass={styles.comment}
-            childClass={styles.commentIcon}
+            imgClass={styles.commentIcon}
+            linkClass={styles.commentNumber}
             icon={commentIcon}
             alt="comment icon"
+            link={url}
           >
             <a
               className={styles.commentNumber}

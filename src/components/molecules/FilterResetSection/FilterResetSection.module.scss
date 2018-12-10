@@ -1,0 +1,13 @@
+.container {
+  margin-bottom: 2rem;
+  color: #586069;
+  font-weight: 600;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #0366d6;
+    cursor: pointer;
+  }
+}

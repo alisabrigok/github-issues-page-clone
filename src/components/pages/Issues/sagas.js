@@ -6,7 +6,7 @@ import {
   getIssues,
   getUsers,
   getLabels
-} from '../../../shared/normalize.service.js';
+} from '../../../shared/services/normalize.service.js';
 import { setLabels } from '../../organisms/LabelSelect/actions';
 
 export function* fetchIssuesSaga() {

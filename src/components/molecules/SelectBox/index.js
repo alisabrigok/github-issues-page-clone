@@ -53,7 +53,7 @@ class SelectBox extends Component<Props, State> {
           }}
           controlShouldRenderValue={false}
           hideSelectedOptions={false}
-          isClearable
+          isClearable={false}
           menuIsOpen
           onChange={onSelectChange}
           onInputChange={this.onInputChange}

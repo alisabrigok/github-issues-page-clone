@@ -1,5 +1,5 @@
 import { uniqBy } from 'lodash';
-import { flatten } from './utility';
+import { flatten } from '../utilities/utility';
 
 export const getIssues = response =>
   response.data.map(issue => ({
