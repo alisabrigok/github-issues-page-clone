@@ -1,16 +1,27 @@
+export const resetAllFilters = state => {
+  return {
+    ...state,
+    filteredIssues: [...state.issues],
+    authorFilterStatus: false,
+    labelFilterStatus: false
+  }
+};
+
+export const filterByAuthorId = (issues, authorId) => issues.filter(issue => issue.user.value === authorId);
+export const filterByLabelId = (issues, labelId) => issues.filter(issue => issue.labels.some(label => label.id === labelId));
+
 export const filterIssuesByAuthor = (state, selectedAuthor) => {
   if (selectedAuthor) {
     const { issues, filteredIssues } = state;
     let newFilteredIssues;
 
-    if (state.labelFilterStatus) {
-      newFilteredIssues = filteredIssues.filter(
-        issue => issue.user.value === selectedAuthor.value
-      );
+    if (state.labelFilterStatus && state.authorFilterStatus) {
+      newFilteredIssues = filterByAuthorId(issues, selectedAuthor.value);
+      newFilteredIssues = filterByLabelId(newFilteredIssues, state.selectedLabel.value);
+    } else if (state.labelFilterStatus && !state.authorFilterStatus) {
+      newFilteredIssues = filterByAuthorId(filteredIssues, selectedAuthor.value);
     } else {
-      newFilteredIssues = issues.filter(
-        issue => issue.user.value === selectedAuthor.value
-      );
+      newFilteredIssues = filterByAuthorId(issues, selectedAuthor.value);
     }
 
     return {
@@ -26,11 +37,7 @@ export const filterIssuesByAuthor = (state, selectedAuthor) => {
         state.selectedLabel
       );
     } else {
-      return {
-        ...state,
-        filteredIssues: [...state.issues],
-        authorFilterStatus: false
-      };
+      return resetAllFilters(state);
     }
   }
 };
@@ -40,14 +47,13 @@ export const filterIssuesByLabel = (state, selectedLabel) => {
     const { issues, filteredIssues } = state;
     let newFilteredIssues;
 
-    if (state.authorFilterStatus) {
-      newFilteredIssues = filteredIssues.filter(issue =>
-        issue.labels.some(label => label.id === selectedLabel.value)
-      );
+    if (state.authorFilterStatus && state.labelFilterStatus) {
+      newFilteredIssues = filterByLabelId(filteredIssues, selectedLabel.value);
+      newFilteredIssues = filterByAuthorId(newFilteredIssues, state.selectedAuthor.value);
+    } else if (state.authorFilterStatus && !state.labelFilterStatus) {
+      newFilteredIssues = filterByLabelId(filteredIssues, selectedLabel.value);
     } else {
-      newFilteredIssues = issues.filter(issue =>
-        issue.labels.some(label => label.id === selectedLabel.value)
-      );
+      newFilteredIssues = filterByLabelId(issues, selectedLabel.value);
     }
 
     return {
@@ -63,11 +69,7 @@ export const filterIssuesByLabel = (state, selectedLabel) => {
         state.selectedAuthor
       );
     } else {
-      return {
-        ...state,
-        filteredIssues: [...state.issues],
-        labelFilterStatus: false
-      };
+      return resetAllFilters(state);
     }
   }
 };
