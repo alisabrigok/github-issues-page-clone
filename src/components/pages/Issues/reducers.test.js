@@ -1,7 +1,8 @@
 import reducer from './reducers';
 import { FETCH_ISSUES, FETCH_ISSUES_SUCCESS, FETCH_ISSUES_FAIL } from './constants';
-import { issuesInitialState, normalizedIssues } from '../../../shared/utilities/test-helpers';
+import { issuesInitialState, normalizedIssues, authors, labels } from '../../../shared/utilities/test-helpers';
 import { RESET_FILTERS } from '../../molecules/FilterResetSection/constants';
+import { FILTER_BY_AUTHOR } from '../../organisms/AuthorSelect/constants';
 
 describe('issues page reducer', () => {
   it('should return the initial state', () => {
@@ -42,5 +43,24 @@ describe('issues page reducer', () => {
       selectedLabel: null
     };
     expect(reducer(filterAppliedIssuesState, actionPayload)).toEqual(expectedState);
+  });
+
+  it('should store the issues filtered by author id to filteredIssues object', () => {
+    const [ selectedAuthor ] = authors;
+    const [issueFilteredByAuthorId] = normalizedIssues; 
+    const actionPayload = { type: FILTER_BY_AUTHOR, selectedAuthor };
+    const initialState = {
+      ...issuesInitialState,
+      issues: [...normalizedIssues],
+      filteredIssues: [...normalizedIssues]
+    }
+    const expectedState = {
+      ...issuesInitialState,
+      issues: [...normalizedIssues],
+      filteredIssues: [issueFilteredByAuthorId],
+      authorFilterStatus: true,
+      selectedAuthor
+    }
+    expect(reducer(initialState, actionPayload)).toEqual(expectedState);
   });
 });

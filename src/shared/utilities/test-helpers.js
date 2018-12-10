@@ -12,14 +12,14 @@ export const normalizedIssues = [
     issueId: 388969936,
     labels: [{
       color: '009900',
-      id: 409579052,
-      name: 'CLA Signed'
+      id: 554733913,
+      name: 'issue: bug'
     }],
     number: 6006,
     title: 'This is a super big bug',
     url: 'https://github.com/facebook/create-react-app/issues/6006',
     user: {
-      value: 123,
+      value: 693791,
       label: 'emibcn',
       avatarUrl: 'https://github.com/facebook/create-react-app/issues/6008'
     }
@@ -36,14 +36,14 @@ export const normalizedIssues = [
     labels: [{
       color: '009900',
       id: 409579052,
-      name: 'CLA Signed'
+      name: 'issue: proposal'
     }],
     number: 6008,
     title: 'This is a super inituative feature request',
     url: 'https://github.com/facebook/create-react-app/issues/6008',
     user: {
       value: 123,
-      label: 'emibcn',
+      label: 'asd',
       avatarUrl: 'https://github.com/facebook/create-react-app/issues/6008'
     } 
   }
