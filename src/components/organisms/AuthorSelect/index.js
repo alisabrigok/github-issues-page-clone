@@ -10,39 +10,35 @@ import { filterByAuthor } from './actions';
 import { isEmpty } from 'lodash';
 
 type State = {
-  isSelectBoxOpen: boolean,
-  selectedAuthor: ?Object
+  isSelectBoxOpen: boolean
 };
 
 type Props = {
   authors: Array<Object>,
-  filterByAuthor: (x: Object) => void
+  filterByAuthor: (x: Object) => void,
+  selectedAuthor: ?Object
 };
 
 class AuthorSelect extends Component<Props, State> {
-  state = { isSelectBoxOpen: false, selectedAuthor: null };
+  state = { isSelectBoxOpen: false };
 
   toggleSelectBox = () => {
     this.setState(state => ({ isSelectBoxOpen: !state.isSelectBoxOpen }));
   };
 
   onSelectChange = (selectedAuthor: Object) => {
-    this.setState({ selectedAuthor }, () => {
-      this.toggleSelectBox();
-      this.props.filterByAuthor(selectedAuthor);
-    });
+    this.toggleSelectBox();
+    this.props.filterByAuthor(selectedAuthor);
   };
 
   render() {
-    const { isSelectBoxOpen, selectedAuthor } = this.state;
-    const { authors } = this.props;
+    const { isSelectBoxOpen } = this.state;
+    const { authors, selectedAuthor } = this.props;
 
     return (
       <div className={styles.menuContainer}>
         {isSelectBoxOpen && <Blanket toggleSelectBox={this.toggleSelectBox} />}
-        <SelectLabel toggleSelectBox={this.toggleSelectBox}>
-          Author
-        </SelectLabel>
+        <SelectLabel toggleSelectBox={this.toggleSelectBox}>Author</SelectLabel>
         {isSelectBoxOpen && !isEmpty(authors) && (
           <SelectBox
             selectOptions={authors}
@@ -64,8 +60,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = ({ authorsReducer }) => ({
-  authors: authorsReducer.authors
+const mapStateToProps = ({ authorsReducer, issuesReducer }) => ({
+  authors: authorsReducer.authors,
+  selectedAuthor: issuesReducer.selectedAuthor
 });
 
 export default connect(

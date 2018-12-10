@@ -23,8 +23,8 @@ const ContentWithIcon = ({
   link
 }: Props) => (
   <div className={parentClass}>
-    <a 
-      href={link} 
+    <a
+      href={link}
       className={linkClass}
       target="_blank"
       rel="noopener noreferrer"

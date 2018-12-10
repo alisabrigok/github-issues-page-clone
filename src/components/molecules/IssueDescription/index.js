@@ -34,6 +34,7 @@ class IssueDescription extends Component<Props> {
     ));
   }
 
+  // get humanized time that passed since createdAt
   getDateDiffFromNow() {
     return moment(this.props.createdAt).fromNow();
   }

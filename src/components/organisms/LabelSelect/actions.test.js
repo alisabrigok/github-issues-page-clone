@@ -12,7 +12,7 @@ describe('label select actions', () => {
   });
 
   it('should create an action to filter labels', () => {
-    const [ selectedLabel ] = labels;
+    const [selectedLabel] = labels;
     const expectedAction = {
       type: FILTER_BY_LABEL,
       selectedLabel

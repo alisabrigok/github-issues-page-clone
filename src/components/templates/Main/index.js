@@ -33,14 +33,28 @@ class Main extends Component<Props> {
   }
 
   render() {
-    const { issues, authorFilterStatus, labelFilterStatus, errorStatus } = this.props;
-    const isFilterResultEmpty = (authorFilterStatus || labelFilterStatus) && !issues.length;
-    const placeHolderStatus = isFilterResultEmpty || errorStatus;
-    const mainClass = !placeHolderStatus ? styles.main : '';
-    
-    const placeHolderSection = placeHolderStatus && (<PlaceHolderSection errorStatus={errorStatus}/>);
+    const {
+      issues,
+      authorFilterStatus,
+      labelFilterStatus,
+      errorStatus
+    } = this.props;
 
-    return <main className={mainClass}>{this.generateRows()} {placeHolderSection}</main>;
+    const isFilterResultEmpty =
+      (authorFilterStatus || labelFilterStatus) && !issues.length;
+    const placeHolderStatus = isFilterResultEmpty || errorStatus;
+    // if placeholder is going to be rendered, remove parent class
+    const mainClass = !placeHolderStatus ? styles.main : '';
+
+    const placeHolderSection = placeHolderStatus && (
+      <PlaceHolderSection errorStatus={errorStatus} />
+    );
+
+    return (
+      <main className={mainClass}>
+        {this.generateRows()} {placeHolderSection}
+      </main>
+    );
   }
 }
 

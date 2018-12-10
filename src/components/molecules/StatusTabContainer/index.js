@@ -23,7 +23,7 @@ class StatusTabContainer extends Component<Props> {
           {this.props.issueCount} Open
         </ContentWithIcon>
         <ContentWithIcon parentClass={styles.close} icon={tick} alt="tick icon">
-          Under Construction...
+          0 Closed
         </ContentWithIcon>
       </div>
     );

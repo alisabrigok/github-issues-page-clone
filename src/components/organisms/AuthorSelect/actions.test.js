@@ -12,7 +12,7 @@ describe('author select actions', () => {
   });
 
   it('should create an action to filter authors', () => {
-    const [ selectedAuthor ] = authors;
+    const [selectedAuthor] = authors;
     const expectedAction = {
       type: FILTER_BY_AUTHOR,
       selectedAuthor

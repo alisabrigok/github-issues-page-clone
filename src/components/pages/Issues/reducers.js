@@ -7,7 +7,11 @@ import {
 import { FILTER_BY_AUTHOR } from '../../organisms/AuthorSelect/constants';
 import { FILTER_BY_LABEL } from '../../organisms/LabelSelect/constants';
 import { RESET_FILTERS } from '../../molecules/FilterResetSection/constants';
-import { authorFilterService, labelFilterService, resetFiltersService } from '../../../shared/services/filter.service';
+import {
+  authorFilterService,
+  labelFilterService,
+  resetFiltersService
+} from '../../../shared/services/filter.service';
 
 const initialState = {
   issues: [],
@@ -24,7 +28,12 @@ const reducer = (state = initialState, action) => {
     case FETCH_ISSUES:
       return { ...state, errorStatus: false };
     case FETCH_ISSUES_SUCCESS:
-      return { ...state, issues: action.fetchedIssues, filteredIssues: action.fetchedIssues, errorStatus: false };
+      return {
+        ...state,
+        issues: action.fetchedIssues,
+        filteredIssues: action.fetchedIssues,
+        errorStatus: false
+      };
     case FETCH_ISSUES_FAIL:
       return { ...state, errorStatus: true };
     case FILTER_BY_AUTHOR:

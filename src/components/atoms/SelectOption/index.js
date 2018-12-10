@@ -4,6 +4,7 @@ import styles from './SelectOption.module.scss';
 
 const { Option } = components;
 
+// create custom component for selection options
 const SelectOption = props => {
   const { data } = props;
 

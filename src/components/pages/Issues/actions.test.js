@@ -9,7 +9,7 @@ import { normalizedIssues } from '../../../shared/utilities/test-helpers';
 describe('issues page actions', () => {
   it('should create an action to fetch issues', () => {
     const expectedAction = {
-      type: FETCH_ISSUES,
+      type: FETCH_ISSUES
     };
     expect(fetchIssues()).toEqual(expectedAction);
   });

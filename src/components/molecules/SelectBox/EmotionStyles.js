@@ -1,21 +1,20 @@
 const getOptionTextColor = ({ isFocused, isSelected }) => {
-  if (isFocused || (isSelected && isFocused)) {
+  if (isFocused || isSelected) {
     return '#fff';
-  } else if (isSelected) {
-    return '#24292e';
   }
 
   return '#586069';
 };
 
-const getOptionBgColor = ({ isFocused }) => {
-  if (isFocused) {
+const getOptionBgColor = ({ isFocused, isSelected }) => {
+  if (isFocused || isSelected) {
     return '#0366d6';
   }
 
   return '#fff';
 };
 
+// generate emotion.js type styling - the select library uses this
 export const customStyles = {
   option: (provided, state) => ({
     color: getOptionTextColor(state),
@@ -43,7 +42,7 @@ export const customStyles = {
     alignItems: 'center',
     maxWidth: '30rem',
     padding: '.5rem',
-    width: '100%',
+    width: '30rem',
     overflow: 'hidden',
     backgroundColor: '#fff',
     height: '3.4rem',

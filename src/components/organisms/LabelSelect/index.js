@@ -10,39 +10,35 @@ import { filterByLabel } from './actions';
 import { isEmpty } from 'lodash';
 
 type State = {
-  isSelectBoxOpen: boolean,
-  selectedLabel: ?Object
+  isSelectBoxOpen: boolean
 };
 
 type Props = {
   labels: Array<Object>,
-  filterByLabel: (x: Object) => void
+  filterByLabel: (x: Object) => void,
+  selectedLabel: ?Object
 };
 
 class LabelSelect extends Component<Props, State> {
-  state = { isSelectBoxOpen: false, selectedLabel: null };
+  state = { isSelectBoxOpen: false };
 
   toggleSelectBox = () => {
     this.setState(state => ({ isSelectBoxOpen: !state.isSelectBoxOpen }));
   };
 
   onSelectChange = (selectedLabel: Object) => {
-    this.setState({ selectedLabel }, () => {
-      this.toggleSelectBox();
-      this.props.filterByLabel(selectedLabel);
-    });
+    this.toggleSelectBox();
+    this.props.filterByLabel(selectedLabel);
   };
 
   render() {
-    const { isSelectBoxOpen, selectedLabel } = this.state;
-    const { labels } = this.props;
+    const { isSelectBoxOpen } = this.state;
+    const { labels, selectedLabel } = this.props;
 
     return (
       <div className={styles.menuContainer}>
         {isSelectBoxOpen && <Blanket toggleSelectBox={this.toggleSelectBox} />}
-        <SelectLabel toggleSelectBox={this.toggleSelectBox}>
-          Labels
-        </SelectLabel>
+        <SelectLabel toggleSelectBox={this.toggleSelectBox}>Labels</SelectLabel>
         {isSelectBoxOpen && !isEmpty(labels) && (
           <SelectBox
             selectOptions={labels}
@@ -64,8 +60,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = ({ labelsReducer }) => ({
-  labels: labelsReducer.labels
+const mapStateToProps = ({ labelsReducer, issuesReducer }) => ({
+  labels: labelsReducer.labels,
+  selectedLabel: issuesReducer.selectedLabel
 });
 
 export default connect(

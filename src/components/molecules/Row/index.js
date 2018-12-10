@@ -17,7 +17,12 @@ class Row extends Component<Props> {
   generateAssignees() {
     const { assignees } = this.props;
     return assignees.map(assignee => (
-      <img className={styles.assignee} key={assignee.id} src={assignee.avatarUrl} alt={`@${assignee.username}`} />
+      <img
+        className={styles.assignee}
+        key={assignee.id}
+        src={assignee.avatarUrl}
+        alt={`@${assignee.username}`}
+      />
     ));
   }
 
