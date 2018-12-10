@@ -5,18 +5,15 @@ import styles from './FilterResetSection.module.scss';
 import ContentWithIcon from '../../atoms/ContentWithIcon/index';
 import crossIcon from '../../../assets/icons/cross.svg';
 import { connect } from 'react-redux';
-import { filterByAuthor } from '../../organisms/AuthorSelect/actions';
-import { filterByLabel } from '../../organisms/LabelSelect/actions';
+import { resetFilters } from './actions';
 
 type Props = {
-  filterByAuthor: () => void,
-  filterByLabel: () => void
+  resetFilters: () => void,
 };
 
 class FilterResetSection extends Component<Props> {
   resetFilterHandler = () => {
-    this.props.filterByAuthor();
-    this.props.filterByLabel();
+    this.props.resetFilters();
   }
 
   render() {
@@ -29,8 +26,7 @@ class FilterResetSection extends Component<Props> {
 }
 
 const mapDispatchToProps = dispatch => ({
-  filterByAuthor: () => dispatch(filterByAuthor()),
-  filterByLabel: () => dispatch(filterByLabel())
+  resetFilters: () => dispatch(resetFilters()),
 });
 
 export default connect(null, mapDispatchToProps)(FilterResetSection);

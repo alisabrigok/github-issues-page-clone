@@ -4,22 +4,16 @@ import {
   FETCH_ISSUES_FAIL
 } from './constants';
 
-export const fetchIssues = () => {
-  return {
-    type: FETCH_ISSUES
-  };
-};
+export const fetchIssues = () => ({
+  type: FETCH_ISSUES
+});
 
-export const fetchIssuesSuccess = data => {
-  return {
-    type: FETCH_ISSUES_SUCCESS,
-    data
-  };
-};
+export const fetchIssuesSuccess = data => ({
+  type: FETCH_ISSUES_SUCCESS,
+  data
+});
 
-export const fetchIssuesFail = error => {
-  return {
-    type: FETCH_ISSUES_FAIL,
-    error
-  };
-};
+export const fetchIssuesFail = error => ({
+  type: FETCH_ISSUES_FAIL,
+  error
+});

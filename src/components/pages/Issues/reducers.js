@@ -6,8 +6,8 @@ import {
 
 import { FILTER_BY_AUTHOR } from '../../organisms/AuthorSelect/constants';
 import { FILTER_BY_LABEL } from '../../organisms/LabelSelect/constants';
-import { filterIssuesByAuthor } from '../../../shared/services/filter.service';
-import { filterIssuesByLabel } from '../../../shared/services/filter.service';
+import { RESET_FILTERS } from '../../molecules/FilterResetSection/constants';
+import { authorFilterService, labelFilterService, resetFiltersService } from '../../../shared/services/filter.service';
 
 const initialState = {
   issues: [],
@@ -28,9 +28,11 @@ const reducer = (state = initialState, action) => {
     case FETCH_ISSUES_FAIL:
       return { ...state, error: action.error };
     case FILTER_BY_AUTHOR:
-      return filterIssuesByAuthor(state, action.selectedAuthor);
+      return authorFilterService(state, action.selectedAuthor);
     case FILTER_BY_LABEL:
-      return filterIssuesByLabel(state, action.selectedLabel);
+      return labelFilterService(state, action.selectedLabel);
+    case RESET_FILTERS:
+      return resetFiltersService(state);
     default:
       return { ...state };
   }

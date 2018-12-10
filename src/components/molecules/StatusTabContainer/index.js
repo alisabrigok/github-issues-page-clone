@@ -20,7 +20,7 @@ class StatusTabContainer extends Component<Props> {
           icon={exclamationBlack}
           alt="exclamation icon black"
         >
-          {this.props.issueCount}
+          {this.props.issueCount} Open
         </ContentWithIcon>
         <ContentWithIcon parentClass={styles.close} icon={tick} alt="tick icon">
           Under Construction...

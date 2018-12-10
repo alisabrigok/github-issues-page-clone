@@ -1,8 +1,10 @@
-import { uniqBy } from 'lodash';
+import { uniqBy, isEmpty } from 'lodash';
 import { flatten } from '../utilities/utility';
 
-export const getIssues = response =>
-  response.data.map(issue => ({
+export const normalizeIssues = response =>
+  response.data
+  .filter(issue => isEmpty(issue.pull_request))
+  .map(issue => ({
     assignee: issue.assignee,
     assignees: issue.assignees,
     comments: issue.comments,
@@ -12,19 +14,19 @@ export const getIssues = response =>
     number: issue.number,
     title: issue.title,
     url: issue.html_url,
-    user: getUser(issue)
+    user: normalizeUser(issue)
   }));
 
-export const getUser = issue => ({
+export const normalizeUser = issue => ({
   value: issue.user.id,
   label: issue.user.login,
   avatarUrl: issue.user.avatar_url
 });
 
-export const getUsers = issues =>
+export const normalizeUsers = issues =>
   uniqBy(issues.map(issue => issue.user), 'value');
 
-export const getLabels = issues => {
+export const normalizeLabels = issues => {
   const nestedLabels = issues.map(issue => issue.labels);
   const uniqueFlattenLabels = uniqBy(flatten(nestedLabels), 'id');
 
