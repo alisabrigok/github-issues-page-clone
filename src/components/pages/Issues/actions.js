@@ -8,9 +8,9 @@ export const fetchIssues = () => ({
   type: FETCH_ISSUES
 });
 
-export const fetchIssuesSuccess = data => ({
+export const fetchIssuesSuccess = fetchedIssues => ({
   type: FETCH_ISSUES_SUCCESS,
-  data
+  fetchedIssues
 });
 
 export const fetchIssuesFail = error => ({

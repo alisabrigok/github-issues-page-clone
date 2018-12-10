@@ -5,8 +5,7 @@ export const normalizeIssues = response =>
   response.data
   .filter(issue => isEmpty(issue.pull_request))
   .map(issue => ({
-    assignee: issue.assignee,
-    assignees: issue.assignees,
+    assignees: normalizeAssignees(issue.assignees),
     comments: issue.comments,
     createdAt: issue.created_at,
     issueId: issue.id,
@@ -14,17 +13,21 @@ export const normalizeIssues = response =>
     number: issue.number,
     title: issue.title,
     url: issue.html_url,
-    user: normalizeUser(issue)
+    user: normalizeUser(issue.user)
   }));
 
-export const normalizeUser = issue => ({
-  value: issue.user.id,
-  label: issue.user.login,
-  avatarUrl: issue.user.avatar_url
+export const normalizeUser = user => ({
+  value: user.id,
+  label: user.login,
+  avatarUrl: user.avatar_url
 });
 
 export const normalizeUsers = issues =>
   uniqBy(issues.map(issue => issue.user), 'value');
+
+export const normalizeAssignees = assignees => 
+  assignees.map(assignee => 
+    ({ id: assignee.id, username: assignee.login, avatarUrl: assignee.avatar_url }));
 
 export const normalizeLabels = issues => {
   const nestedLabels = issues.map(issue => issue.labels);

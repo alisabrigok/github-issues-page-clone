@@ -1,4 +1,4 @@
-// @flow
+// flow
 
 import React, { Component } from 'react';
 import styles from './Row.module.scss';
@@ -9,12 +9,20 @@ import ContentWithIcon from '../../atoms/ContentWithIcon/index';
 
 type Props = {
   comments: string,
-  url: string
+  url: string,
+  assignees: Array<Object>
 };
 
 class Row extends Component<Props> {
+  generateAssignees() {
+    const { assignees } = this.props;
+    return assignees.map(assignee => (
+      <img className={styles.assignee} key={assignee.id} src={assignee.avatarUrl} alt={`@${assignee.username}`} />
+    ));
+  }
+
   render() {
-    const { comments, url } = this.props;
+    const { comments, url, assignees } = this.props;
 
     return (
       <section className={styles.row}>
@@ -24,6 +32,9 @@ class Row extends Component<Props> {
           alt="exclamation icon green"
         />
         <IssueDescription {...this.props} />
+        <div className={styles.assignees}>
+          {assignees && this.generateAssignees()}
+        </div>
         {!!comments && (
           <ContentWithIcon
             parentClass={styles.comment}

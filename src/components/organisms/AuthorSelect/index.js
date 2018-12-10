@@ -7,6 +7,7 @@ import Blanket from '../../atoms/Blanket';
 import SelectLabel from '../../atoms/SelectLabel';
 import { connect } from 'react-redux';
 import { filterByAuthor } from './actions';
+import { isEmpty } from 'lodash';
 
 type State = {
   isSelectBoxOpen: boolean,
@@ -40,10 +41,9 @@ class AuthorSelect extends Component<Props, State> {
       <div className={styles.menuContainer}>
         {isSelectBoxOpen && <Blanket toggleSelectBox={this.toggleSelectBox} />}
         <SelectLabel toggleSelectBox={this.toggleSelectBox}>
-          {' '}
-          Author{' '}
+          Author
         </SelectLabel>
-        {isSelectBoxOpen && (
+        {isSelectBoxOpen && !isEmpty(authors) && (
           <SelectBox
             selectOptions={authors}
             filterTitle="Filter by author"

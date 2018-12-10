@@ -38,4 +38,4 @@ export const resetFiltersService = state => ({
   labelFilterStatus: false,
   selectedAuthor: null,
   selectedLabel: null
-})
+});

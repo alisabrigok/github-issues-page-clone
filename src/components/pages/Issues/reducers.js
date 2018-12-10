@@ -12,7 +12,7 @@ import { authorFilterService, labelFilterService, resetFiltersService } from '..
 const initialState = {
   issues: [],
   filteredIssues: [],
-  error: null,
+  errorStatus: false,
   authorFilterStatus: false,
   labelFilterStatus: false,
   selectedAuthor: null,
@@ -22,11 +22,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ISSUES:
-      return { ...state };
+      return { ...state, errorStatus: false };
     case FETCH_ISSUES_SUCCESS:
-      return { ...state, issues: action.data, filteredIssues: action.data };
+      return { ...state, issues: action.fetchedIssues, filteredIssues: action.fetchedIssues, errorStatus: false };
     case FETCH_ISSUES_FAIL:
-      return { ...state, error: action.error };
+      return { ...state, errorStatus: true };
     case FILTER_BY_AUTHOR:
       return authorFilterService(state, action.selectedAuthor);
     case FILTER_BY_LABEL:
