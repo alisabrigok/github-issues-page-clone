@@ -3,6 +3,7 @@ import { FETCH_ISSUES, FETCH_ISSUES_SUCCESS, FETCH_ISSUES_FAIL } from './constan
 import { issuesInitialState, normalizedIssues, authors, labels } from '../../../shared/utilities/test-helpers';
 import { RESET_FILTERS } from '../../molecules/FilterResetSection/constants';
 import { FILTER_BY_AUTHOR } from '../../organisms/AuthorSelect/constants';
+import { FILTER_BY_LABEL } from '../../organisms/LabelSelect/constants';
 
 describe('issues page reducer', () => {
   it('should return the initial state', () => {
@@ -45,9 +46,9 @@ describe('issues page reducer', () => {
     expect(reducer(filterAppliedIssuesState, actionPayload)).toEqual(expectedState);
   });
 
-  it('should store the issues filtered by author id to filteredIssues object', () => {
+  it('should filter the no filter applied issues by author id and store the filtered issues to filteredIssues object', () => {
     const [ selectedAuthor ] = authors;
-    const [issueFilteredByAuthorId] = normalizedIssues; 
+    const [expectedFilteredIssues] = normalizedIssues; 
     const actionPayload = { type: FILTER_BY_AUTHOR, selectedAuthor };
     const initialState = {
       ...issuesInitialState,
@@ -55,11 +56,67 @@ describe('issues page reducer', () => {
       filteredIssues: [...normalizedIssues]
     }
     const expectedState = {
-      ...issuesInitialState,
-      issues: [...normalizedIssues],
-      filteredIssues: [issueFilteredByAuthorId],
+      ...initialState,
+      filteredIssues: [expectedFilteredIssues],
       authorFilterStatus: true,
       selectedAuthor
+    }
+    expect(reducer(initialState, actionPayload)).toEqual(expectedState);
+  });
+
+  it('should filter the label filter applied issues by author id and store the filtered issues to filteredIssues object', () => {
+    const [ selectedAuthor ] = authors;
+    const [expectedFilteredIssues] = normalizedIssues; 
+    const actionPayload = { type: FILTER_BY_AUTHOR, selectedAuthor };
+    const initialState = {
+      ...issuesInitialState,
+      issues: [...normalizedIssues],
+      filteredIssues: [...normalizedIssues],
+      labelFilterStatus: true
+    }
+    const expectedState = {
+      ...initialState,
+      filteredIssues: [expectedFilteredIssues],
+      authorFilterStatus: true,
+      selectedAuthor
+    }
+    expect(reducer(initialState, actionPayload)).toEqual(expectedState);
+  });
+
+  it('should filter the no filter applied issues by label id and store the filtered issues to filteredIssues object', () => {
+    const [ selectedLabel ] = labels;
+    const [expectedFilteredIssues] = normalizedIssues; 
+    const actionPayload = { type: FILTER_BY_LABEL, selectedLabel };
+    const initialState = {
+      ...issuesInitialState,
+      issues: [...normalizedIssues],
+      filteredIssues: [...normalizedIssues]
+    }
+    const expectedState = {
+      ...initialState,
+      filteredIssues: [expectedFilteredIssues],
+      labelFilterStatus: true,
+      selectedLabel
+    }
+    expect(reducer(initialState, actionPayload)).toEqual(expectedState);
+  });
+
+
+  it('should filter the author filter applied issues by label id and store the filtered issues to filteredIssues object', () => {
+    const [ selectedLabel ] = labels;
+    const [expectedFilteredIssues] = normalizedIssues; 
+    const actionPayload = { type: FILTER_BY_LABEL, selectedLabel };
+    const initialState = {
+      ...issuesInitialState,
+      issues: [...normalizedIssues],
+      filteredIssues: [...normalizedIssues],
+      authorFilterStatus: true
+    }
+    const expectedState = {
+      ...initialState,
+      filteredIssues: [expectedFilteredIssues],
+      labelFilterStatus: true,
+      selectedLabel
     }
     expect(reducer(initialState, actionPayload)).toEqual(expectedState);
   });
