@@ -20,8 +20,9 @@ const PlaceHolderSection = ({ errorStatus }: Props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
+            {' '}
             all of GitHub
-          </a>
+          </a>{' '}
           or try an
           <a
             className={styles.link}
@@ -29,6 +30,7 @@ const PlaceHolderSection = ({ errorStatus }: Props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
+            {' '}
             advanced search
           </a>
           .
