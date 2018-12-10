@@ -1,0 +1,19 @@
+.selectBox {
+  background-color: white;
+  border-radius: .4rem;
+  box-shadow: 0 0 0 1px hsla(218, 50%, 10%, 0.1), 0 .4rem 1.1rem hsla(218, 50%, 10%, 0.1);
+  margin-top: 2rem;
+  position: absolute;
+  z-index: 99;
+  right: 0;
+}
+
+.filterTitle {
+  color: #24292e;
+  font-weight: 600;
+  background: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  line-height: 1.6rem;
+  padding: .8rem 1rem;
+  font-size: 1.2rem;
+}

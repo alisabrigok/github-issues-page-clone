@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+
+  .item {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: #586069;
+
+    &:hover {
+      color: #24292e;
+      cursor: pointer;
+    }
+
+    &:after {
+      border: .4rem solid transparent;
+      border-top-color: currentcolor;
+      content: "";
+      display: inline-block;
+      height: 0;
+      vertical-align: -2px;
+      width: 0;
+      margin-left: .3rem;
+    }
+  }
+}

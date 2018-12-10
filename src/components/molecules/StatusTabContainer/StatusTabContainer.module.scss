@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  margin-left: 1.5rem;
+
+  .open {
+    display: flex;
+    color: #24292e;
+    cursor: pointer;
+  }
+  
+  .close {
+    display: flex;
+    margin-left: 1rem;
+    color: #586069;
+
+    &:hover {
+      color: #24292e;
+      cursor: pointer;
+    }
+  }
+}
