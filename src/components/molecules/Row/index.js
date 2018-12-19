@@ -40,7 +40,7 @@ class Row extends Component<Props> {
         <div className={styles.assignees}>
           {assignees && this.generateAssignees()}
         </div>
-        {!!comments && (
+        {!!comments ? (
           <ContentWithIcon
             parentClass={styles.comment}
             imgClass={styles.commentIcon}
@@ -58,6 +58,8 @@ class Row extends Component<Props> {
               {comments}
             </a>
           </ContentWithIcon>
+        ) : (
+          <div className={styles.placeholder} />
         )}
       </section>
     );
